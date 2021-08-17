@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>天气案例_深度监视(简写)</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天天气很{{info}}</h2>
+        <button @click="changeWeather">切换天气</button>
+
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        data() {
+            return {
+                isHot: true,
+
+            }
+        },
+        computed: {
+            info() {
+                return this.isHot ? '热' : '凉爽';
+            }
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot;
+            }
+        },
+        watch: {
+            //正常写法
+            /* isHot: {
+                // immediate: true, //初始化时让handler调用一下
+                // deep: true,//深度监视
+                // handler什么时候调用?当isHot发生改变时
+                handler(newValue, oldValue) {
+                    console.log('isHot被修改成了' + newValue + '，之前是' + oldValue);
+                }
+            }, */
+            //简写,注意简写之后都不能配置其他东西
+            /* isHot(newValue, oldValue) {
+                console.log('isHot被修改成了' + newValue + '，之前是' + oldValue);
+            } */
+        }
+    });
+    vm.$mount('#root');
+    //正常写法
+    /* vm.$watch('isHot', {
+        immediate: true, //初始化时让handler调用一下
+        deep: true, //深度监视
+        // handler什么时候调用?当isHot发生改变时
+        handler(newValue, oldValue) {
+            console.log('isHot被修改成了' + newValue + '，之前是' + oldValue);
+        }
+    }); */
+    //简写,注意简写之后都不能配置其他东西
+    vm.$watch('isHot', function(newValue, oldValue) {
+        console.log('isHot被修改成了' + newValue + '，之前是' + oldValue);
+    })
+</script>
+
+</html>

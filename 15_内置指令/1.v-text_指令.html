@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <div>你好，{{name}}</div>
+        <div v-text="name"></div>
+        <div>{{str}}</div>
+        <div v-text="str"></div>
+    </div>
+</body>
+<script>
+    //阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        data() {
+            return {
+                name: '尚硅谷',
+                str: '<h3>你好</h3>'
+            }
+        }
+    });
+    vm.$mount('#root');
+</script>
+
+</html>

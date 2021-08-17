@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2 v-pre>Vue其实很简单</h2>
+        <h2>当前n值是：{{n}}</h2>
+        <button @click="n++">点我n+1</button>
+    </div>
+</body>
+<script>
+    //阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        data() {
+            return {
+                n: 1
+            }
+        }
+    });
+    vm.$mount('#root');
+</script>
+
+</html>

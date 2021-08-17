@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <!-- 遍历数组 -->
+        <h2>人员列表</h2>
+        <ul>
+            <li v-for="(p,index) of persons" :key="p.id">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+        <!-- 遍历对象 -->
+        <h2>汽车</h2>
+        <ul>
+            <li v-for="(val,key) of car" :key="key">
+                {{key}}: {{val}}
+            </li>
+        </ul>
+        <!-- 遍历字符串 -->
+        <h2>字符串</h2>
+        <ul>
+            <li v-for="(val,index) of str" :key="index">
+                {{val}}: {{index}}
+            </li>
+        </ul>
+        <h2>遍历指定次数</h2>
+        <ul>
+            <li v-for="(number,index) of 5" :key="index">
+                {{index}}: {{number}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    //阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        data() {
+            return {
+                persons: [{
+                    id: '001',
+                    name: '张三',
+                    age: 19
+                }, {
+                    id: '002',
+                    name: '张四',
+                    age: 22
+                }, {
+                    id: '003',
+                    name: '赵六',
+                    age: 33
+                }, ],
+                car: {
+                    name: '奥迪',
+                    price: '70万',
+                    color: '黑色'
+                },
+                str: 'hello'
+            }
+        }
+    });
+    vm.$mount('#root');
+</script>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>{{name}}</h2>
+        <h2>当前的n值是：<span v-text="n"></span></h2>
+        <h2>放大10倍后的n值是：<span v-big="n"></span></h2>
+        <!-- <h2>放大10倍后的n值是：<span v-big-number="n"></span></h2> -->
+        <button @click="n++">点我n++</button>
+        <hr/>
+        <input type="text" :value="n">
+        <input type="text" v-fbind:value="n">
+    </div>
+</body>
+<script>
+    //阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    // 全局写法
+    //#region 
+    /* Vue.directive('fbind', {
+        //指令与元素成功绑定时（一开始）
+        bind(element, binding) {
+            element.value = binding.value;
+        },
+        //指令所在元素被插入页面时
+        inserted(element, binding) {
+            element.focus();
+        },
+        //指令所在的模板被重新解析时
+        update(element, binding) {
+            element.value = binding.value;
+            // element.focus();
+        }
+    }) */
+    //#endregion
+    const vm = new Vue({
+        data() {
+            return {
+                name: '尚硅谷',
+                n: 1
+            }
+        },
+        //全局的写法是和过滤器的全局写法一样，Vue.directive
+        directives: { //这里边的this都是window
+            //big函数何时被调用？1.指令与元素成功绑定时（一开始）2.指令所在的模板被重新解析时
+            /* "big-number" (element, binding) {
+                // console.log('big');
+                element.innerHTML = binding.value * 10;
+            }, */
+            big(element, binding) {
+                // console.log('big');
+                element.innerHTML = binding.value * 10;
+            },
+            fbind: {
+                //指令与元素成功绑定时（一开始）
+                bind(element, binding) {
+                    element.value = binding.value;
+                },
+                //指令所在元素被插入页面时
+                inserted(element, binding) {
+                    element.focus();
+                },
+                //指令所在的模板被重新解析时
+                update(element, binding) {
+                    element.value = binding.value;
+                    // element.focus();
+                }
+            }
+        }
+    });
+    vm.$mount('#root');
+</script>
+
+</html>

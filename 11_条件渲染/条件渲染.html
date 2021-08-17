@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="root">
+        <h2>当前的n值是{{n}}</h2>
+        <button @click="n++">点我n值加一</button>
+        <!-- 使用v-show做条件渲染 -->
+        <!-- <h2 v-show="false">欢迎来到{{name}}</h2> -->
+        <!-- <h2 v-show="1===2">欢迎来到{{name}}</h2> -->
+        <!-- <h2 v-show="a">欢迎来到{{name}}</h2> -->
+        <!-- 使用v-if做条件渲染 -->
+        <!-- <h2 v-if="false">欢迎来到{{name}}</h2> -->
+        <!-- <h2 v-if="1===1">欢迎来到{{name}}</h2> -->
+        <!-- <div v-show="n===1">Angular</div>
+        <div v-show="n===2">React</div>
+        <div v-show="n===3">Vue</div> -->
+
+        <!-- v-if和template配合使用 -->
+        <template v-if="n===2">
+            <h2>你好</h2>
+            <h2>尚硅谷</h2>
+            <h2>背景</h2>
+        </template>
+    </div>
+</body>
+<script>
+    //阻止vue在启动时生成生产提示
+    Vue.config.productionTip = false;
+    const vm = new Vue({
+        data() {
+            return {
+                name: '尚硅谷',
+                n: 0
+            }
+        }
+    });
+    vm.$mount('#root');
+</script>
+
+</html>
